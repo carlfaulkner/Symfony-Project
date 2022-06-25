@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dac635737222b7b91b29b622b2aa4208",
+    "content-hash": "a3c066e23296e750ebd82c2fb12f1474",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1524,6 +1524,81 @@
                 }
             ],
             "time": "2022-05-05T09:31:05+00:00"
+        },
+        {
+            "name": "gacela-project/gacela",
+            "version": "0.23.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gacela-project/gacela.git",
+                "reference": "65c0fbb9a70c3160a4e46dd10f4a2071129341b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gacela-project/gacela/zipball/65c0fbb9a70c3160a4e46dd10f4a2071129341b8",
+                "reference": "65c0fbb9a70c3160a4e46dd10f4a2071129341b8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "phpbench/phpbench": "^1.2",
+                "phpmetrics/phpmetrics": "^2.8",
+                "phpstan/phpstan": "^1.7",
+                "phpunit/phpunit": "^9.5",
+                "symfony/console": "^5.4",
+                "symfony/var-dumper": "^5.4",
+                "vimeo/psalm": "^4.23"
+            },
+            "suggest": {
+                "gacela-project/gacela-env-config-reader": "Allows to read .env config files",
+                "gacela-project/gacela-yaml-config-reader": "Allows to read yml/yaml config files",
+                "symfony/console": "Allows to use vendor/bin/gacela script"
+            },
+            "bin": [
+                "gacela"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gacela\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jose Maria Valera Reales",
+                    "email": "chemaclass@outlook.es"
+                },
+                {
+                    "name": "Jesus Valera Reales",
+                    "email": "jesus1902@outlook.com"
+                }
+            ],
+            "description": "Gacela Framework",
+            "homepage": "https://gacela-project.com/",
+            "keywords": [
+                "kernel",
+                "modular",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/gacela-project/gacela/issues",
+                "source": "https://github.com/gacela-project/gacela/tree/0.23.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Chemaclass",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-25T09:32:09+00:00"
         },
         {
             "name": "laminas/laminas-code",
