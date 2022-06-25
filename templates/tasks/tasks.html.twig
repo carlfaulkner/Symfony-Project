@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block body %}
+
+    <h1>{{ title }}</h1>
+    <div>Hello</div>
+
+    {% for task in tasks %}
+
+        <p>{{ task.id }}</p>
+        <p>{{ task.title }}</p>
+        <p><a href="{{ path('app_task', {
+            task_id: task.id
+        }) }}">123123</a></p>
+
+    {% endfor %}
+
+{% endblock %}
