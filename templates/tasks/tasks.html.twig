@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Tasks{% endblock %}
-
 {% block body %}
-
     <h1>{{ title }}</h1>
-    <div>Hello</div>
-
-    {% for task in tasks %}
-
-        <p>{{ task.id }}</p>
-        <p>{{ task.title }}</p>
-        <p><a href="{{ path('app_task', {
-            task_id: task.id
-        }) }}">123123</a></p>
-
-    {% endfor %}
-
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>Task</th>
+            <th>Completed</th>
+            <th></th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.completed }}</td>
+                <td><a href="{{ path('app_task', {task_id: task.id}) }}">view task</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

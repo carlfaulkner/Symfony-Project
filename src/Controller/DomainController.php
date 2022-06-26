@@ -23,10 +23,12 @@ class DomainController extends AbstractController
             array(
                 'id' => 12,
                 'title' => 'test title 12',
+                'completed' => 'N',
             ),
             array(
                 'id' => 13,
                 'title' => 'test title 13',
+                'completed' => 'N',
             )
         );
 
