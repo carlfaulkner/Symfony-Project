@@ -51,12 +51,8 @@ class TasksApiController extends AbstractController
         $this->access_token = $content['data']['access_token'];
     }
 
-    public function getTasks(int $id, LoggerInterface $logger): Response
+    public function getTasks()
     {
-        $logger->info('Returning API response for task {task}',[
-            'task' => $id,
-        ]);
-
         $response = $this->client->request('GET', 'https://api.clickwebsitebuilder.com/v1/tasks',
             [
                 'headers' => [
@@ -68,6 +64,22 @@ class TasksApiController extends AbstractController
 
         $this->json_response = $response->toArray();
 
-        return $this->json_response;
+        return $this->json_response['data']['tasks'];
+    }
+    
+    public function getTask(int $task_id)
+    {
+        $response = $this->client->request('GET', 'https://api.clickwebsitebuilder.com/v1/tasks/'.$task_id,
+            [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => $this->access_token
+                ]
+            ]
+        );
+
+        $this->json_response = $response->toArray();
+
+        return $this->json_response['data']['tasks'][0];
     }
 }

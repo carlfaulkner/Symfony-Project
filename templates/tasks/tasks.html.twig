@@ -2,7 +2,7 @@
 {% block title %}Tasks{% endblock %}
 {% block body %}
     <h1>{{ title }}</h1>
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0" class="table">
         <tr>
             <th>ID</th>
             <th>Task</th>
@@ -14,7 +14,7 @@
                 <td>{{ task.id }}</td>
                 <td>{{ task.title }}</td>
                 <td>{{ task.completed }}</td>
-                <td><a href="{{ path('app_task', {task_id: task.id}) }}">view task</a></td>
+                <td class="align-right"><a href="{{ path('app_task', {task_id: task.id}) }}">view task</a></td>
             </tr>
         {% endfor %}
     </table>

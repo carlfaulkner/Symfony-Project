@@ -19,30 +19,25 @@ class DomainController extends AbstractController
     #[Route('/tasks', name: 'app_tasks')]
     public function tasks(): Response
     {
-        $tasks = array(
-            array(
-                'id' => 12,
-                'title' => 'test title 12',
-                'completed' => 'N',
-            ),
-            array(
-                'id' => 13,
-                'title' => 'test title 13',
-                'completed' => 'N',
-            )
-        );
+        $tasks = new TasksApiController();
+
+        $tasks_response = $tasks->getTasks();
 
         return $this->render('tasks/tasks.html.twig', [
             'title' => 'Tasks',
-            'tasks' =>  $tasks,
+            'tasks' =>  $tasks_response,
         ]);
     }
 
     #[Route('/tasks/{task_id}', name: 'app_task')]
     public function task($task_id): Response
     {
+        $tasks = new TasksApiController();
+
+        $tasks_response = $tasks->getTask($task_id);
+
         return $this->render('task/task.html.twig', [
-            'title' => 'Task',
+            'title' => $tasks_response['title'],
         ]);
     }
 }

@@ -418,6 +418,15 @@ ul{
 }
 
 
+.table{
+
+}
+
+.table .align-right{
+  text-align: right!important;
+}
+
+
 #header{
     width: 100%;
     margin: 0px;
