@@ -1,17 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace App\Controller;
+/**
+ * Copyright 2022 - The Customer Bureau - All Rights Reserved
+ */
+namespace App\Tasks\Domain;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpClient\HttpClient;
-use Psr\Log\LoggerInterface;
 
-class TasksApiController extends AbstractController
+final class Tasks
 {
-    #[Route('/api/tasks/{id<\d+>}', methods: ['GET'])]
-
     public $json_response;
     private $access_token;
     private $username = 'carl';
@@ -51,7 +48,7 @@ class TasksApiController extends AbstractController
         $this->access_token = $content['data']['access_token'];
     }
 
-    public function getTasks()
+    public function listTasks(): array
     {
         $response = $this->client->request('GET', 'https://api.clickwebsitebuilder.com/v1/tasks',
             [
@@ -62,12 +59,14 @@ class TasksApiController extends AbstractController
             ]
         );
 
+        //$content = $response->getContent();
+   
         $this->json_response = $response->toArray();
 
-        return $this->json_response['data']['tasks'];
+        return $this->json_response;
     }
-    
-    public function getTask(int $task_id)
+
+    public function getTask($task_id): array
     {
         $response = $this->client->request('GET', 'https://api.clickwebsitebuilder.com/v1/tasks/'.$task_id,
             [
@@ -78,8 +77,38 @@ class TasksApiController extends AbstractController
             ]
         );
 
+        //$content = $response->getContent();
+   
         $this->json_response = $response->toArray();
 
-        return $this->json_response['data']['tasks'][0];
+        return $this->json_response;
+    }
+
+    public function postTask($title): array
+    {
+        $this->title = htmlspecialchars($title);
+        $this->title = stripslashes($this->title);
+        $this->title = trim($this->title);
+    
+        // validate title
+
+        $data = array(
+            'title' => $this->title,
+            'completed' => 'N'
+        );
+
+        $response = $this->client->request('POST', 'https://api.clickwebsitebuilder.com/v1/tasks',
+            [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => $this->access_token
+                ],
+                'body' => json_encode($data)
+            ]
+        );
+
+        $this->json_response = $response->toArray();
+
+        return $this->json_response;
     }
 }

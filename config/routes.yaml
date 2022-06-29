@@ -1,3 +1,7 @@
-controllers:
-    resource: ../src/Controller/
-    type: attribute
+homepage_controller:
+    resource: ../src/Homepage/Controller/
+    type: annotation
+    
+tasks_controller:
+    resource: ../src/Tasks/Controller/
+    type: annotation

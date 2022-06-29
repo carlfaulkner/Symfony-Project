@@ -1,43 +1,39 @@
 <?php
 
-namespace App\Controller;
+namespace App\Tasks\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Tasks\TasksFacade;
 
-class DomainController extends AbstractController
+final class TasksController extends AbstractController
 {
-    #[Route('/', name: 'app_homepage')]
-    public function homepage(): Response
-    {
-        return $this->render('homepage/homepage.html.twig', [
-            'title' => 'Home Page',
-        ]);
-    }
-
     #[Route('/tasks', name: 'app_tasks')]
     public function tasks(): Response
     {
-        $tasks = new TasksApiController();
-
-        $tasks_response = $tasks->getTasks();
+        $tasks = new TasksFacade();
+        $tasks_response = $tasks->listTasks();
+              
+        $tasks = $tasks_response['data']['tasks'];
 
         return $this->render('tasks/tasks.html.twig', [
             'title' => 'Tasks',
-            'tasks' =>  $tasks_response,
+            'tasks' => $tasks,
         ]);
     }
 
     #[Route('/tasks/{task_id}', name: 'app_task')]
     public function task($task_id): Response
     {
-        $tasks = new TasksApiController();
-
+        $tasks = new TasksFacade();
         $tasks_response = $tasks->getTask($task_id);
 
+        $task = $tasks_response['data']['tasks'][0];
+
         return $this->render('task/task.html.twig', [
-            'title' => $tasks_response['title'],
+            'title' => $task['title'],
         ]);
     }
 }

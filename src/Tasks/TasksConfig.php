@@ -6,5 +6,5 @@ use Gacela\Framework\AbstractConfig;
 
 final class TasksConfig extends AbstractConfig
 {
-
+    
 }
