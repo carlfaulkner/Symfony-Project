@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\Type\TaskType;
 use App\Tasks\TasksFacade;
 
 final class TasksController extends AbstractController
@@ -34,16 +35,24 @@ final class TasksController extends AbstractController
 
         $task = $tasks_response['data']['tasks'][0];
 
+        $task_id = $task['id'];
+        $task_title = $task['title'];
+        $task_completed = ($task['completed'] == 'Y') ? 'Yes' : 'No';
+
         return $this->render('tasks/task.html.twig', [
-            'title' => $task['title'],
+            'id' => $task_id,
+            'title' => $task_title,
+            'completed' => $task_completed,
         ]);
     }
 
     #[Route('/tasks/add', name: 'app_task_add')]
-    public function addTask(): Response
+    public function addTask(Request $request): Response
     {
+        //$form = $this->createForm(TaskType::class);
+
         return $this->render('tasks/task-add.html.twig', [
-            'title' => 'Add Task',
+            'title' => 'Add Task'
         ]);
     }
 }

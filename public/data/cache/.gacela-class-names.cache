@@ -1,5 +1,6 @@
 <?php return array (
-  '\\Engineered\\Tasks\\Factory' => '\\Engineered\\Tasks\\TasksFactory',
   '\\App\\Tasks\\Factory' => '\\App\\Tasks\\TasksFactory',
   '\\App\\Tasks\\Config' => '\\App\\Tasks\\TasksConfig',
+  '\\App\\Homepage\\Factory' => '\\App\\Homepage\\HomepageFactory',
+  '\\App\\Homepage\\Config' => '\\App\\Homepage\\HomepageConfig',
 );

@@ -4,7 +4,22 @@
 
 {% block body %}
 
-<h1>{{ title }}</h1>
-<div>Hello</div>
-<p><a href="{{ path('app_tasks') }}">Tasks</a></p>
+<h1 class="mb-15">Top Tasks</h1>
+<br/>
+
+<div class="grid grid-col-4 grid-gap-10">
+    {% for task in tasks %}
+        <div class="card text-center" onclick="location.href='{{ path('app_task', {task_id: task.id}) }}'" style="cursor: pointer;">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<br/>
+
+<div class="d-flex justify-content-center">
+    <a href="{{ path('app_tasks') }}" class="btn btn btn-success">View all tasks</a>
+</div>
+
 {% endblock %}
